@@ -7,18 +7,18 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tweet": "npx tsx scripts/tweet-bot.ts",
-    "tweet:dry": "DRY_RUN=true npx tsx scripts/tweet-bot.ts",
-    "tweet:once": "TWEET_ONCE=true npx tsx scripts/tweet-bot.ts"
+    "post": "npx tsx scripts/post-bot.ts",
+    "post:dry": "DRY_RUN=true npx tsx scripts/post-bot.ts",
+    "post:once": "POST_ONCE=true npx tsx scripts/post-bot.ts"
   },
   "dependencies": {
+    "@atproto/api": "^0.19.3",
     "clsx": "2.1.1",
     "next": "14.2.35",
     "pg": "8.12.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwind-merge": "2.5.2",
-    "twitter-api-v2": "^1.29.0",
     "zod": "3.23.8"
   },
   "devDependencies": {
