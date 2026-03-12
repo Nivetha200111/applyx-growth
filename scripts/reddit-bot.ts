@@ -713,16 +713,24 @@ async function submitPost(
   } else {
     try {
       const subreddit = client.getSubreddit(post.subreddit);
+      const submitLink = subreddit.submitLink.bind(subreddit) as (args: {
+        title: string;
+        url: string;
+      }) => Promise<unknown>;
+      const submitSelfpost = subreddit.submitSelfpost.bind(subreddit) as (args: {
+        title: string;
+        text: string;
+      }) => Promise<unknown>;
 
       if (post.kind === "link" && post.url) {
-        await subreddit.submitLink({
+        await submitLink({
           title: post.title,
-          url: post.url,
+          url: post.url
         });
       } else {
-        await subreddit.submitSelfpost({
+        await submitSelfpost({
           title: post.title,
-          text: post.body,
+          text: post.body
         });
       }
       console.log(`✅ Posted to r/${post.subreddit}!`);
