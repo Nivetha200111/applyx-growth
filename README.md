@@ -1,14 +1,46 @@
 # ApplyX Growth Engine
 
-Standalone Next.js 14 growth service for ApplyX. This project is designed to run independently from the main product and later integrate with ApplyX over HTTP APIs.
+Standalone Next.js 14 growth service for ApplyX — pure SEO content that funnels organic traffic to the main product.
 
 ## Features
 
-- Public ATS resume checker at `/ats-check`
-- Shareable ATS score pages at `/score/[slug]`
-- Programmatic SEO resume guides at `/resume/[role]`
+- Programmatic SEO pages for 130+ job roles (resume guides, interview Qs, salary data, ATS keywords)
+- Blog articles on career topics
+- Competitor comparison pages
+- Email capture for audience building
 - Growth event tracking and internal analytics at `/admin/growth`
-- PostgreSQL-ready schema with a development-safe in-memory fallback
+- Automated posting bots for Bluesky and Reddit
+
+## Social Bots
+
+### Bluesky Bot (FREE — no API costs)
+
+```bash
+# 1. Set up credentials
+cp env.bluesky.example .env.bluesky
+# Edit .env.bluesky with your handle + app password
+
+# 2. Run
+npm run post           # Start loop (every 3 hours)
+npm run post:dry       # Preview posts without sending
+npm run post:once      # Send one post and exit
+```
+
+### Reddit Bot (FREE Reddit API)
+
+```bash
+# 1. Create a Reddit "script" app at https://www.reddit.com/prefs/apps
+# 2. Set up credentials
+cp env.reddit.example .env.reddit
+# Edit .env.reddit with your client ID, secret, username, and password
+
+# 3. Run
+npm run reddit         # Start loop (every 4 hours)
+npm run reddit:dry     # Preview posts without sending
+npm run reddit:once    # Post once and exit
+```
+
+**Reddit strategy:** Text-heavy, genuinely helpful posts in career subreddits (r/resumes, r/jobs, r/careerguidance, r/cscareerquestions, r/GetEmployed, r/jobsearchhacks). Links are embedded naturally as sources.
 
 ## Environment variables
 
@@ -26,7 +58,7 @@ npm run dev
 
 ## Database
 
-The PostgreSQL schema lives in `db/schema.sql`, with the initial migration in `db/migrations/001_growth_engine.sql`.
+The PostgreSQL schema lives in `db/schema.sql`, with migrations in `db/migrations/`.
 
 ## Internal conversion callback
 
@@ -57,23 +89,3 @@ Allowed `eventType` values:
 - `signup`
 - `resume_tailored`
 - `payment_completed`
-
-Behavior:
-
-- Stores the event in `growth_events`
-- If `slug` is present, the service looks up the matching ATS result and records the ATS association in event metadata
-
-Success response:
-
-```json
-{
-  "success": true,
-  "event": {
-    "eventType": "signup",
-    "source": "score-page",
-    "slug": "a82fj2",
-    "userId": "user_123",
-    "associatedAtsResultId": "9f712b1b-6ae9-4db7-8219-7f7c4cdb3fd3"
-  }
-}
-```

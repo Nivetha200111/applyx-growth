@@ -15,7 +15,9 @@ pnpm-debug.log*
 
 .env.twitter
 .env.bluesky
+.env.reddit
 .tweet-state.json
 .post-state.json
+.reddit-state.json
 
 .vercel

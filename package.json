@@ -9,7 +9,10 @@
     "lint": "next lint",
     "post": "npx tsx scripts/post-bot.ts",
     "post:dry": "DRY_RUN=true npx tsx scripts/post-bot.ts",
-    "post:once": "POST_ONCE=true npx tsx scripts/post-bot.ts"
+    "post:once": "POST_ONCE=true npx tsx scripts/post-bot.ts",
+    "reddit": "npx tsx scripts/reddit-bot.ts",
+    "reddit:dry": "DRY_RUN=true npx tsx scripts/reddit-bot.ts",
+    "reddit:once": "POST_ONCE=true npx tsx scripts/reddit-bot.ts"
   },
   "dependencies": {
     "@atproto/api": "^0.19.3",
@@ -18,6 +21,7 @@
     "pg": "8.12.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "snoowrap": "^1.23.0",
     "tailwind-merge": "2.5.2",
     "zod": "3.23.8"
   },
@@ -26,6 +30,7 @@
     "@types/pg": "8.11.6",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "@types/snoowrap": "^1.16.1",
     "autoprefixer": "10.4.19",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.35",
