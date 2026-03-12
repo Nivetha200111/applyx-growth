@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Silkscreen } from "next/font/google";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -8,6 +9,12 @@ import { JsonLd } from "@/components/json-ld";
 import { RetroEffects } from "@/components/retro-effects";
 import { buildOrganization } from "@/lib/seo/structured-data";
 import { env } from "@/lib/env";
+
+const silkscreen = Silkscreen({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-display"
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.appUrl),
@@ -41,7 +48,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className="retro-body text-slate-50 antialiased">
+      <body className={`${silkscreen.variable} retro-body text-slate-50 antialiased`}>
         <JsonLd data={orgLd} />
         <RetroEffects />
         <div className="min-h-screen overflow-hidden">
@@ -56,17 +63,17 @@ export default function RootLayout({
             </div>
           </div>
 
-          <header className="sticky top-0 z-30 border-b border-fuchsia-400/20 bg-slate-950/70 backdrop-blur-xl">
+          <header className="sticky top-0 z-30 border-b border-slate-400/20 bg-slate-950/78 backdrop-blur-xl">
             <div className="page-shell flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
               <div>
                 <Link href="/" className="inline-flex items-center gap-3 text-white transition hover:scale-[1.01]">
                   <span className="retro-logo">ApplyX.exe</span>
-                  <span className="hidden text-xs uppercase tracking-[0.35em] text-cyan-300 sm:inline">
+                  <span className="hidden text-xs uppercase tracking-[0.35em] text-slate-300 sm:inline">
                     Grow Mode
                   </span>
                 </Link>
-                <p className="mt-2 text-xs uppercase tracking-[0.28em] text-fuchsia-200/80">
-                  The neon quest hub for job hunters
+                <p className="mt-2 text-xs uppercase tracking-[0.28em] text-slate-400">
+                  The retro quest hub for job hunters
                 </p>
               </div>
 
@@ -92,7 +99,7 @@ export default function RootLayout({
 
           <main className="relative z-10">{children}</main>
 
-          <footer className="relative z-10 border-t border-fuchsia-400/20 bg-slate-950/60">
+          <footer className="relative z-10 border-t border-slate-400/20 bg-slate-950/65">
             <div className="page-shell py-12">
               <div className="grid gap-8 md:grid-cols-4">
                 <div className="retro-panel p-6">
@@ -106,44 +113,44 @@ export default function RootLayout({
                 </div>
 
                 <div className="retro-panel p-6">
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-200">
                     Resources
                   </h4>
                   <nav className="mt-3 flex flex-col gap-2 text-sm text-slate-300">
-                    <Link href="/interview/software-engineer" className="transition hover:text-cyan-200">Interview Questions</Link>
-                    <Link href="/salary/software-engineer" className="transition hover:text-cyan-200">Salary Explorer</Link>
-                    <Link href="/keywords/software-engineer" className="transition hover:text-cyan-200">ATS Keywords</Link>
-                    <Link href="/resume/software-engineer" className="transition hover:text-cyan-200">Resume Guides</Link>
+                    <Link href="/interview/software-engineer" className="transition hover:text-slate-100">Interview Questions</Link>
+                    <Link href="/salary/software-engineer" className="transition hover:text-slate-100">Salary Explorer</Link>
+                    <Link href="/keywords/software-engineer" className="transition hover:text-slate-100">ATS Keywords</Link>
+                    <Link href="/resume/software-engineer" className="transition hover:text-slate-100">Resume Guides</Link>
                   </nav>
                 </div>
 
                 <div className="retro-panel p-6">
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-fuchsia-300">
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-200">
                     Guides
                   </h4>
                   <nav className="mt-3 flex flex-col gap-2 text-sm text-slate-300">
-                    <Link href="/blog/how-to-pass-ats-screening" className="transition hover:text-fuchsia-200">Pass ATS Screening</Link>
-                    <Link href="/blog/resume-format-2026" className="transition hover:text-fuchsia-200">Resume Format 2026</Link>
-                    <Link href="/blog/tailored-resume-vs-generic" className="transition hover:text-fuchsia-200">Tailored vs Generic Resume</Link>
-                    <Link href="/blog/job-search-strategy-2026" className="transition hover:text-fuchsia-200">Job Search Strategy</Link>
+                    <Link href="/blog/how-to-pass-ats-screening" className="transition hover:text-slate-100">Pass ATS Screening</Link>
+                    <Link href="/blog/resume-format-2026" className="transition hover:text-slate-100">Resume Format 2026</Link>
+                    <Link href="/blog/tailored-resume-vs-generic" className="transition hover:text-slate-100">Tailored vs Generic Resume</Link>
+                    <Link href="/blog/job-search-strategy-2026" className="transition hover:text-slate-100">Job Search Strategy</Link>
                   </nav>
                 </div>
 
                 <div className="retro-panel p-6">
-                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
+                  <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-200">
                     Product
                   </h4>
                   <nav className="mt-3 flex flex-col gap-2 text-sm text-slate-300">
-                    <Link href="/applyx?source=footer" className="transition hover:text-amber-200">ApplyX — AI Resume Tailor</Link>
-                    <Link href="/compare/applyx-vs-jobscan" className="transition hover:text-amber-200">ApplyX vs Jobscan</Link>
-                    <Link href="/compare/applyx-vs-resumeworded" className="transition hover:text-amber-200">ApplyX vs Resume Worded</Link>
+                    <Link href="/applyx?source=footer" className="transition hover:text-slate-100">ApplyX — AI Resume Tailor</Link>
+                    <Link href="/compare/applyx-vs-jobscan" className="transition hover:text-slate-100">ApplyX vs Jobscan</Link>
+                    <Link href="/compare/applyx-vs-resumeworded" className="transition hover:text-slate-100">ApplyX vs Resume Worded</Link>
                   </nav>
                 </div>
               </div>
 
-              <div className="mt-10 flex flex-col gap-3 border-t border-fuchsia-400/20 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
+              <div className="mt-10 flex flex-col gap-3 border-t border-slate-400/20 pt-6 text-sm text-slate-400 md:flex-row md:items-center md:justify-between">
                 <p>&copy; {new Date().getFullYear()} ApplyX. Built to make job hunting feel less bleak.</p>
-                <Link href="/applyx?source=site-footer" className="text-cyan-300 transition hover:text-white">
+                <Link href="/applyx?source=site-footer" className="text-slate-200 transition hover:text-white">
                   Launch ApplyX &rarr;
                 </Link>
               </div>

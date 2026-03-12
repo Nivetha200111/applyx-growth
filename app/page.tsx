@@ -83,7 +83,7 @@ export default function HomePage() {
 
           <h1 className="mt-6 max-w-4xl text-5xl font-black uppercase tracking-[-0.04em] text-white sm:text-7xl">
             The internet arcade for
-            <span className="block bg-gradient-to-r from-cyan-300 via-fuchsia-300 to-amber-300 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-slate-100 via-stone-200 to-slate-300 bg-clip-text text-transparent">
               surviving the job hunt
             </span>
           </h1>
@@ -105,17 +105,17 @@ export default function HomePage() {
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             <div className="retro-panel p-4">
               <p className="retro-kicker">Roles</p>
-              <p className="mt-2 text-3xl font-black text-cyan-300">{SEO_ROLE_COUNT}+</p>
+              <p className="mt-2 text-3xl font-black text-slate-100">{SEO_ROLE_COUNT}+</p>
               <p className="mt-2 text-sm text-slate-300">Character classes with guides and data.</p>
             </div>
             <div className="retro-panel p-4">
               <p className="retro-kicker">Content</p>
-              <p className="mt-2 text-3xl font-black text-fuchsia-300">500+</p>
+              <p className="mt-2 text-3xl font-black text-stone-200">500+</p>
               <p className="mt-2 text-sm text-slate-300">Screens of research before you even hit apply.</p>
             </div>
             <div className="retro-panel p-4">
               <p className="retro-kicker">Upgrade</p>
-              <p className="mt-2 text-3xl font-black text-amber-300">10s</p>
+              <p className="mt-2 text-3xl font-black text-slate-200">10s</p>
               <p className="mt-2 text-sm text-slate-300">To tailor your resume once the plan is clear.</p>
             </div>
           </div>
@@ -139,23 +139,23 @@ export default function HomePage() {
                 {STORY_STEPS.map((step, index) => (
                   <div
                     key={step.title}
-                    className="group rounded-[1.4rem] border border-cyan-400/20 bg-slate-950/60 p-4 transition duration-300 hover:-translate-y-1 hover:border-fuchsia-300/50 hover:shadow-[0_0_30px_rgba(232,121,249,0.18)]"
+                    className="group rounded-[1.4rem] border border-slate-400/15 bg-slate-950/60 p-4 transition duration-300 hover:-translate-y-1 hover:border-slate-200/20 hover:shadow-[0_0_24px_rgba(15,23,42,0.28)]"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.32em] text-cyan-300">
+                        <p className="text-xs font-bold uppercase tracking-[0.32em] text-slate-300">
                           {step.label}
                         </p>
                         <h3 className="mt-2 text-lg font-bold text-white">{step.title}</h3>
                       </div>
-                      <span className="text-3xl font-black text-fuchsia-300/80">0{index + 1}</span>
+                      <span className="text-3xl font-black text-slate-300/80">0{index + 1}</span>
                     </div>
                     <p className="mt-3 text-sm leading-6 text-slate-300">{step.description}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="rounded-[1.4rem] border border-amber-300/25 bg-amber-400/10 p-4 text-sm text-amber-100">
+              <div className="rounded-[1.4rem] border border-slate-300/15 bg-white/5 p-4 text-sm text-slate-200">
                 Cursor detector, neon transitions, and weird internet energy enabled.
               </div>
             </div>
@@ -251,13 +251,13 @@ export default function HomePage() {
               trying to feel alive, surprising, and worth sharing while still being useful.
             </p>
             <div className="mt-6 space-y-3 text-sm text-slate-200">
-              <div className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3">
+              <div className="rounded-2xl border border-slate-300/15 bg-white/5 px-4 py-3">
                 Neon UI creates a stronger first impression.
               </div>
-              <div className="rounded-2xl border border-fuchsia-400/20 bg-fuchsia-400/10 px-4 py-3">
+              <div className="rounded-2xl border border-slate-300/15 bg-white/5 px-4 py-3">
                 Story framing makes the content easier to understand.
               </div>
-              <div className="rounded-2xl border border-amber-300/20 bg-amber-300/10 px-4 py-3">
+              <div className="rounded-2xl border border-slate-300/15 bg-white/5 px-4 py-3">
                 Stronger emotional hook can lead to more clicks into ApplyX.
               </div>
             </div>
