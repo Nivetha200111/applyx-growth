@@ -41,8 +41,14 @@ button {
   font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
-.retro-body :is(h1, h2, h3, h4, .retro-logo, .retro-kicker, .retro-chip, .retro-button, .retro-nav-pill, .retro-mini-link, .retro-hud, .retro-marquee-track) {
+/* Mono only for small UI chrome — kickers, chips, nav, HUD, marquee */
+.retro-body :is(.retro-logo, .retro-kicker, .retro-chip, .retro-button, .retro-nav-pill, .retro-mini-link, .retro-hud, .retro-marquee-track) {
   font-family: var(--font-display), ui-monospace, monospace;
+}
+
+/* Headings use the readable body font */
+.retro-body :is(h1, h2, h3, h4) {
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ── Floating orbs ──────────────────────────────── */
