@@ -1,0 +1,51 @@
+name: Bluesky Bot
+
+on:
+  schedule:
+    # Every 3 hours: 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 UTC
+    - cron: "0 */3 * * *"
+  workflow_dispatch: # Allow manual trigger from GitHub UI
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Restore the post state file so the bot picks up where it left off
+      - name: Restore post state
+        uses: actions/cache@v4
+        with:
+          path: .post-state.json
+          key: bluesky-post-state-${{ github.ref }}
+          restore-keys: |
+            bluesky-post-state-
+
+      - name: Send one Bluesky post
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          POST_ONCE: "true"
+          POST_BASE_URL: "https://grow.applyx.space"
+        run: npx tsx scripts/post-bot.ts
+
+      # Save the updated state so next run picks a different post
+      - name: Save post state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .post-state.json
+          key: bluesky-post-state-${{ github.ref }}-${{ github.run_id }}
+
