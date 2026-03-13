@@ -5,10 +5,11 @@
 :root {
   color-scheme: dark;
   scroll-behavior: smooth;
-  --retro-cyan: 148, 163, 184;
-  --retro-plum: 168, 162, 158;
-  --retro-gold: 180, 168, 132;
-  --retro-paper: 226, 232, 240;
+  /* ApplyX brand emerald palette */
+  --ax-brand: 52, 211, 153;        /* brand-400 #34d399 */
+  --ax-brand-dim: 16, 185, 129;    /* brand-500 #10b981 */
+  --ax-brand-deep: 5, 150, 105;    /* brand-600 #059669 */
+  --ax-paper: 226, 232, 240;       /* off-white for text */
 }
 
 html {
@@ -18,10 +19,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 20% 20%, rgba(var(--retro-cyan), 0.12), transparent 22%),
-    radial-gradient(circle at 80% 12%, rgba(var(--retro-plum), 0.1), transparent 18%),
-    radial-gradient(circle at 50% 72%, rgba(var(--retro-gold), 0.08), transparent 20%),
-    linear-gradient(180deg, #050816 0%, #090c1d 45%, #04060f 100%);
+    radial-gradient(circle at 20% 20%, rgba(var(--ax-brand), 0.08), transparent 22%),
+    radial-gradient(circle at 80% 12%, rgba(var(--ax-brand-dim), 0.06), transparent 18%),
+    radial-gradient(circle at 50% 72%, rgba(var(--ax-brand-deep), 0.05), transparent 20%),
+    linear-gradient(180deg, #050816 0%, #070e1a 45%, #04060f 100%);
   font-feature-settings: "liga" 1, "calt" 1;
 }
 
@@ -34,24 +35,17 @@ button {
   @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
 }
 
+/* ── Typography ─────────────────────────────────── */
 .retro-body {
   position: relative;
-  font-family:
-    Inter,
-    ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
 }
 
-.retro-body :is(h1, h2, h3, h4, .retro-logo, .retro-kicker, .retro-chip, .retro-button, .retro-nav-pill, .retro-mini-link, .retro-hud) {
-  font-family: var(--font-display), monospace;
-  -webkit-font-smoothing: none;
-  font-smooth: never;
+.retro-body :is(h1, h2, h3, h4, .retro-logo, .retro-kicker, .retro-chip, .retro-button, .retro-nav-pill, .retro-mini-link, .retro-hud, .retro-marquee-track) {
+  font-family: var(--font-display), ui-monospace, monospace;
 }
 
+/* ── Floating orbs ──────────────────────────────── */
 .retro-body::before,
 .retro-body::after {
   content: "";
@@ -68,7 +62,7 @@ button {
   left: -5rem;
   width: 18rem;
   height: 18rem;
-  background: rgba(var(--retro-cyan), 0.12);
+  background: rgba(var(--ax-brand), 0.1);
   animation: float-orb 14s ease-in-out infinite;
 }
 
@@ -77,10 +71,11 @@ button {
   bottom: 8rem;
   width: 16rem;
   height: 16rem;
-  background: rgba(var(--retro-plum), 0.11);
+  background: rgba(var(--ax-brand-dim), 0.08);
   animation: float-orb 16s ease-in-out infinite reverse;
 }
 
+/* ── Fixed layers (grid / scanlines / noise / glow / HUD) */
 .retro-grid,
 .retro-scanlines,
 .retro-noise,
@@ -99,11 +94,11 @@ button {
 
 .retro-grid {
   background-image:
-    linear-gradient(rgba(var(--retro-paper), 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(var(--retro-paper), 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(var(--ax-brand), 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--ax-brand), 0.04) 1px, transparent 1px);
   background-size: 44px 44px;
   mask-image: linear-gradient(to bottom, transparent, black 14%, black 80%, transparent);
-  opacity: 0.18;
+  opacity: 0.22;
 }
 
 .retro-scanlines {
@@ -116,7 +111,7 @@ button {
   );
   background-size: 100% 6px;
   mix-blend-mode: soft-light;
-  opacity: 0.2;
+  opacity: 0.18;
 }
 
 .retro-noise {
@@ -128,28 +123,30 @@ button {
   opacity: 0.35;
 }
 
+/* ── Cursor glow ────────────────────────────────── */
 .retro-cursor-glow {
   z-index: 20;
   width: 18rem;
   height: 18rem;
   border-radius: 9999px;
   background:
-    radial-gradient(circle, rgba(var(--retro-cyan), 0.16) 0%, rgba(var(--retro-plum), 0.08) 35%, transparent 70%);
+    radial-gradient(circle, rgba(var(--ax-brand), 0.14) 0%, rgba(var(--ax-brand-dim), 0.06) 35%, transparent 70%);
   filter: blur(24px);
   transform: translate(-50%, -50%);
   transition: opacity 180ms ease;
 }
 
+/* ── HUD ────────────────────────────────────────── */
 .retro-hud {
   right: 1rem;
   bottom: 1rem;
   z-index: 25;
   display: none;
   gap: 0.65rem;
-  border: 1px solid rgba(var(--retro-paper), 0.16);
+  border: 1px solid rgba(var(--ax-brand), 0.16);
   background: rgba(2, 6, 23, 0.8);
   box-shadow: 0 0 24px rgba(15, 23, 42, 0.3);
-  color: rgba(var(--retro-paper), 0.9);
+  color: rgba(var(--ax-brand), 0.85);
   backdrop-filter: blur(12px);
   border-radius: 1rem;
   padding: 0.8rem 1rem;
@@ -165,13 +162,14 @@ button {
   }
 }
 
+/* ── Marquee ────────────────────────────────────── */
 .retro-marquee {
   position: relative;
   z-index: 15;
   overflow: hidden;
-  border-bottom: 1px solid rgba(var(--retro-paper), 0.12);
+  border-bottom: 1px solid rgba(var(--ax-brand), 0.12);
   background:
-    linear-gradient(90deg, rgba(var(--retro-paper), 0.08), rgba(var(--retro-cyan), 0.08), rgba(var(--retro-gold), 0.06));
+    linear-gradient(90deg, rgba(var(--ax-brand), 0.05), rgba(var(--ax-brand-dim), 0.06), rgba(var(--ax-brand-deep), 0.04));
 }
 
 .retro-marquee-track {
@@ -183,22 +181,24 @@ button {
   font-weight: 800;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: white;
+  color: rgba(var(--ax-brand), 0.9);
   animation: marquee 26s linear infinite;
 }
 
+/* ── Logo ───────────────────────────────────────── */
 .retro-logo {
-  border: 1px solid rgba(var(--retro-paper), 0.16);
+  border: 1px solid rgba(var(--ax-brand), 0.2);
   border-radius: 9999px;
   background:
-    linear-gradient(135deg, rgba(var(--retro-paper), 0.08), rgba(var(--retro-cyan), 0.08));
-  box-shadow: 0 0 18px rgba(15, 23, 42, 0.3);
+    linear-gradient(135deg, rgba(var(--ax-brand), 0.1), rgba(var(--ax-brand-deep), 0.08));
+  box-shadow: 0 0 18px rgba(5, 150, 105, 0.12);
   padding: 0.6rem 1rem;
   font-size: 1rem;
   font-weight: 900;
   letter-spacing: 0.06em;
 }
 
+/* ── Nav pill ───────────────────────────────────── */
 .retro-nav-pill {
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -213,21 +213,22 @@ button {
 
 .retro-nav-pill:hover {
   transform: translateY(-1px);
-  border-color: rgba(var(--retro-paper), 0.24);
-  background: rgba(var(--retro-paper), 0.08);
+  border-color: rgba(var(--ax-brand), 0.28);
+  background: rgba(var(--ax-brand), 0.08);
   color: white;
 }
 
+/* ── CTA button ─────────────────────────────────── */
 .retro-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
-  border: 1px solid rgba(var(--retro-paper), 0.18);
+  border: 1px solid rgba(var(--ax-brand), 0.22);
   background:
-    linear-gradient(135deg, rgba(var(--retro-paper), 0.12), rgba(var(--retro-cyan), 0.12));
+    linear-gradient(135deg, rgba(var(--ax-brand), 0.14), rgba(var(--ax-brand-deep), 0.14));
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 0 1px rgba(var(--ax-brand), 0.06) inset,
     0 12px 24px rgba(15, 23, 42, 0.28);
   color: white;
   font-size: 0.9rem;
@@ -244,17 +245,17 @@ button {
 
 .retro-button:hover {
   transform: translateY(-2px) scale(1.01);
-  border-color: rgba(255, 255, 255, 0.28);
+  border-color: rgba(var(--ax-brand), 0.4);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+    0 0 0 1px rgba(var(--ax-brand), 0.12) inset,
     0 16px 30px rgba(15, 23, 42, 0.34);
-  filter: saturate(0.95);
+  filter: brightness(1.06);
 }
 
 .retro-button--ghost {
   background: rgba(15, 23, 42, 0.55);
   box-shadow:
-    0 0 0 1px rgba(var(--retro-paper), 0.08) inset,
+    0 0 0 1px rgba(var(--ax-brand), 0.08) inset,
     0 12px 30px rgba(2, 6, 23, 0.3);
 }
 
@@ -263,6 +264,7 @@ button {
   padding: 0.72rem 1.1rem;
 }
 
+/* ── Shared card / panel base ───────────────────── */
 .retro-panel,
 .story-card,
 .role-card,
@@ -271,11 +273,11 @@ button {
 .retro-monitor {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(var(--ax-brand), 0.08);
   background:
     linear-gradient(180deg, rgba(15, 23, 42, 0.82), rgba(3, 7, 18, 0.85));
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 0 0 1px rgba(var(--ax-brand), 0.02) inset,
     0 18px 50px rgba(2, 6, 23, 0.42);
   backdrop-filter: blur(14px);
 }
@@ -289,11 +291,12 @@ button {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(var(--retro-paper), 0.05), transparent 35%, rgba(var(--retro-cyan), 0.06));
+  background: linear-gradient(135deg, rgba(var(--ax-brand), 0.04), transparent 35%, rgba(var(--ax-brand-dim), 0.05));
   opacity: 0.65;
   pointer-events: none;
 }
 
+/* ── Chip / kicker / mini-link ──────────────────── */
 .retro-chip,
 .retro-kicker,
 .retro-mini-link {
@@ -304,18 +307,19 @@ button {
 
 .retro-chip {
   border-radius: 9999px;
-  border: 1px solid rgba(var(--retro-paper), 0.12);
-  background: rgba(var(--retro-paper), 0.05);
-  color: rgba(var(--retro-paper), 0.92);
+  border: 1px solid rgba(var(--ax-brand), 0.18);
+  background: rgba(var(--ax-brand), 0.06);
+  color: rgba(var(--ax-brand), 0.92);
   font-size: 0.7rem;
   padding: 0.45rem 0.75rem;
 }
 
 .retro-kicker {
-  color: rgba(var(--retro-paper), 0.76);
+  color: rgba(var(--ax-brand), 0.8);
   font-size: 0.72rem;
 }
 
+/* ── Monitor frame ──────────────────────────────── */
 .retro-monitor {
   border-radius: 2rem;
   padding: 1.1rem;
@@ -332,9 +336,21 @@ button {
   width: 0.85rem;
   height: 0.85rem;
   border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(var(--retro-paper), 0.9), rgba(var(--retro-cyan), 0.75));
 }
 
+.retro-monitor__topbar span:nth-child(1) {
+  background: rgba(var(--ax-brand), 0.7);
+}
+
+.retro-monitor__topbar span:nth-child(2) {
+  background: rgba(var(--ax-brand-dim), 0.6);
+}
+
+.retro-monitor__topbar span:nth-child(3) {
+  background: rgba(var(--ax-brand-deep), 0.5);
+}
+
+/* ── Interactive cards ──────────────────────────── */
 .story-card,
 .role-card,
 .article-card,
@@ -354,9 +370,9 @@ button {
 .article-card:hover,
 .quest-tile:hover {
   transform: translateY(-4px) scale(1.01);
-  border-color: rgba(var(--retro-paper), 0.18);
+  border-color: rgba(var(--ax-brand), 0.22);
   box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 0 0 1px rgba(var(--ax-brand), 0.06) inset,
     0 24px 42px rgba(15, 23, 42, 0.34);
 }
 
@@ -367,8 +383,8 @@ button {
   width: 3rem;
   height: 3rem;
   border-radius: 1rem;
-  background: rgba(var(--retro-paper), 0.08);
-  color: rgba(var(--retro-paper), 0.92);
+  background: rgba(var(--ax-brand), 0.1);
+  color: rgba(var(--ax-brand), 0.92);
   font-weight: 900;
   letter-spacing: 0.1em;
 }
@@ -380,7 +396,7 @@ button {
   width: 3rem;
   height: 3rem;
   border-radius: 1rem;
-  background: rgba(var(--retro-paper), 0.08);
+  background: rgba(var(--ax-brand), 0.08);
   font-size: 1.5rem;
 }
 
@@ -398,31 +414,33 @@ button {
   line-height: 1.7;
 }
 
+/* ── Card colour variants ───────────────────────── */
 .role-card--1,
 .article-card--1 {
-  border-color: rgba(var(--retro-paper), 0.12);
+  border-color: rgba(var(--ax-brand), 0.12);
 }
 
 .role-card--2,
 .article-card--2 {
-  border-color: rgba(var(--retro-cyan), 0.14);
+  border-color: rgba(var(--ax-brand-dim), 0.14);
 }
 
 .role-card--3,
 .article-card--3 {
-  border-color: rgba(var(--retro-gold), 0.16);
+  border-color: rgba(var(--ax-brand-deep), 0.18);
 }
 
 .role-card--4,
 .article-card--4 {
-  border-color: rgba(148, 163, 184, 0.16);
+  border-color: rgba(var(--ax-brand), 0.10);
 }
 
+/* ── Mini links on role cards ───────────────────── */
 .retro-mini-link {
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgb(224 231 255);
+  border: 1px solid rgba(var(--ax-brand), 0.1);
+  background: rgba(var(--ax-brand), 0.04);
+  color: rgba(var(--ax-paper), 0.9);
   padding: 0.45rem 0.65rem;
   transition:
     transform 180ms ease,
@@ -432,10 +450,11 @@ button {
 
 .retro-mini-link:hover {
   transform: translateY(-1px);
-  background: rgba(var(--retro-paper), 0.08);
+  background: rgba(var(--ax-brand), 0.1);
   color: white;
 }
 
+/* ── Animations ─────────────────────────────────── */
 .animate-in-up {
   animation: in-up 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }

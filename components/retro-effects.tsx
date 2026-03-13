@@ -53,13 +53,11 @@ export function RetroEffects() {
       />
 
       <div className="retro-hud" aria-hidden="true">
-        <span>CURSOR DETECTOR: {cursor.active ? "LOCKED" : "IDLE"}</span>
+        <span>APPLYX GROW</span>
         <span>
-          X:{String(Math.round(cursor.x)).padStart(4, "0")} Y:
-          {String(Math.round(cursor.y)).padStart(4, "0")}
+          {String(Math.round(cursor.x)).padStart(4, "0")},{String(Math.round(cursor.y)).padStart(4, "0")}
         </span>
       </div>
     </>
   );
 }
-

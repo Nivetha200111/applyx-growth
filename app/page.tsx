@@ -25,32 +25,25 @@ const POPULAR_ROLES = [
   "customer-success-manager"
 ];
 
-const STORY_STEPS = [
+const STEPS = [
   {
-    label: "Level 01",
-    title: "Find your class",
+    label: "Step 1",
+    title: "Pick your target role",
     description:
-      "Pick a role and unlock interview questions, salary maps, ATS keywords, and resume tactics."
+      "Browse interview questions, salary ranges, ATS keywords, and resume guides for your specific role."
   },
   {
-    label: "Level 02",
-    title: "Beat the ATS dungeon",
+    label: "Step 2",
+    title: "Learn what gets you through",
     description:
-      "Use the exact language recruiters and screeners are searching for before your resume gets filtered out."
+      "Understand the exact keywords, question patterns, and salary benchmarks recruiters expect."
   },
   {
-    label: "Level 03",
-    title: "Equip ApplyX",
+    label: "Step 3",
+    title: "Tailor your resume with ApplyX",
     description:
-      "Take everything you learned and turn it into a tailored resume for the exact job description."
+      "Paste any job description and get a resume tailored to match — in seconds, not hours."
   }
-];
-
-const VIBE_SIGNALS = [
-  "NO CORPORATE BEIGE",
-  "MORE STORY, LESS BROCHURE",
-  "JOB HUNT = QUEST MODE",
-  "FREE GUIDES + BIG ENERGY"
 ];
 
 function titleize(slug: string): string {
@@ -71,56 +64,56 @@ export default function HomePage() {
       <JsonLd data={websiteLd} />
       <JsonLd data={appLd} />
 
+      {/* ── Hero ─────────────────────────────────────────── */}
       <section className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
         <div className="animate-in-up">
           <div className="flex flex-wrap gap-2">
-            {VIBE_SIGNALS.map((signal) => (
-              <span key={signal} className="retro-chip">
-                {signal}
-              </span>
-            ))}
+            <span className="retro-chip">FREE FOR EVERYONE</span>
+            <span className="retro-chip">130+ ROLES</span>
+            <span className="retro-chip">AI-POWERED</span>
           </div>
 
           <h1 className="mt-6 max-w-4xl text-5xl font-black uppercase tracking-[-0.04em] text-white sm:text-7xl">
-            The internet arcade for
-            <span className="block bg-gradient-to-r from-slate-100 via-stone-200 to-slate-300 bg-clip-text text-transparent">
-              surviving the job hunt
+            Everything you need to
+            <span className="block bg-gradient-to-r from-brand-300 via-brand-400 to-brand-200 bg-clip-text text-transparent">
+              land your next role
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
-            Grow is where the ApplyX story starts: a retro guidebook packed with interview
-            cheat codes, salary maps, ATS secrets, and resume upgrades for {SEO_ROLE_COUNT}+
-            roles.
+            Interview questions, salary data, ATS keywords, and resume guides for {SEO_ROLE_COUNT}+
+            roles — all free. Research your target role, then let ApplyX tailor your resume
+            automatically.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="#quest-map" className="retro-button">
-              Start the quest
+            <Link href="#roles" className="retro-button">
+              Explore roles
             </Link>
             <Link href="/applyx?source=homepage-hero" className="retro-button retro-button--ghost">
-              Jump to ApplyX
+              Try ApplyX free
             </Link>
           </div>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             <div className="retro-panel p-4">
               <p className="retro-kicker">Roles</p>
-              <p className="mt-2 text-3xl font-black text-slate-100">{SEO_ROLE_COUNT}+</p>
-              <p className="mt-2 text-sm text-slate-300">Character classes with guides and data.</p>
+              <p className="mt-2 text-3xl font-black text-brand-400">{SEO_ROLE_COUNT}+</p>
+              <p className="mt-2 text-sm text-slate-300">With dedicated guides and data.</p>
             </div>
             <div className="retro-panel p-4">
-              <p className="retro-kicker">Content</p>
-              <p className="mt-2 text-3xl font-black text-stone-200">500+</p>
-              <p className="mt-2 text-sm text-slate-300">Screens of research before you even hit apply.</p>
+              <p className="retro-kicker">Pages</p>
+              <p className="mt-2 text-3xl font-black text-brand-300">500+</p>
+              <p className="mt-2 text-sm text-slate-300">Of free career research content.</p>
             </div>
             <div className="retro-panel p-4">
-              <p className="retro-kicker">Upgrade</p>
-              <p className="mt-2 text-3xl font-black text-slate-200">10s</p>
-              <p className="mt-2 text-sm text-slate-300">To tailor your resume once the plan is clear.</p>
+              <p className="retro-kicker">Resume tailor</p>
+              <p className="mt-2 text-3xl font-black text-brand-200">10s</p>
+              <p className="mt-2 text-sm text-slate-300">To tailor your resume to any JD.</p>
             </div>
           </div>
         </div>
 
+        {/* ── How it works panel ──────────────────────────── */}
         <div className="animate-in-up delay-1">
           <div className="retro-monitor">
             <div className="retro-monitor__topbar">
@@ -131,148 +124,104 @@ export default function HomePage() {
 
             <div className="space-y-5">
               <div>
-                <p className="retro-kicker">Story mode</p>
-                <h2 className="mt-2 text-2xl font-black uppercase text-white">Your quest map</h2>
+                <p className="retro-kicker">How it works</p>
+                <h2 className="mt-2 text-2xl font-black uppercase text-white">Three steps</h2>
               </div>
 
               <div className="space-y-4">
-                {STORY_STEPS.map((step, index) => (
+                {STEPS.map((step, index) => (
                   <div
                     key={step.title}
-                    className="group rounded-[1.4rem] border border-slate-400/15 bg-slate-950/60 p-4 transition duration-300 hover:-translate-y-1 hover:border-slate-200/20 hover:shadow-[0_0_24px_rgba(15,23,42,0.28)]"
+                    className="group rounded-[1.4rem] border border-brand-400/15 bg-slate-950/60 p-4 transition duration-300 hover:-translate-y-1 hover:border-brand-400/25 hover:shadow-[0_0_24px_rgba(5,150,105,0.12)]"
                   >
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.32em] text-slate-300">
+                        <p className="text-xs font-bold uppercase tracking-[0.32em] text-brand-300">
                           {step.label}
                         </p>
                         <h3 className="mt-2 text-lg font-bold text-white">{step.title}</h3>
                       </div>
-                      <span className="text-3xl font-black text-slate-300/80">0{index + 1}</span>
+                      <span className="text-3xl font-black text-brand-400/40">0{index + 1}</span>
                     </div>
                     <p className="mt-3 text-sm leading-6 text-slate-300">{step.description}</p>
                   </div>
                 ))}
               </div>
-
-              <div className="rounded-[1.4rem] border border-slate-300/15 bg-white/5 p-4 text-sm text-slate-200">
-                Cursor detector, neon transitions, and weird internet energy enabled.
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="quest-map" className="mt-14">
-        <div className="retro-panel p-5 sm:p-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="retro-kicker">Main quest loop</p>
-              <h2 className="mt-2 text-2xl font-black uppercase text-white">
-                Learn free. Click deeper. Convert when ready.
-              </h2>
-            </div>
-            <Link href="/blog/how-to-pass-ats-screening" className="retro-button retro-button--ghost">
-              See a sample guide
-            </Link>
-          </div>
-
-          <div className="mt-6 grid gap-4 lg:grid-cols-3">
-            <div className="story-card">
-              <span className="story-card__icon">01</span>
-              <h3 className="mt-4 text-xl font-bold text-white">Get pulled in by the vibe</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">
-                Instead of sounding like a corporate brochure, the site feels like something worth
-                exploring. The design is part of the hook.
-              </p>
-            </div>
-            <div className="story-card">
-              <span className="story-card__icon">02</span>
-              <h3 className="mt-4 text-xl font-bold text-white">Deliver actual value fast</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">
-                Role pages, salary pages, and ATS guides answer real questions immediately so users
-                have a reason to stay.
-              </p>
-            </div>
-            <div className="story-card">
-              <span className="story-card__icon">03</span>
-              <h3 className="mt-4 text-xl font-bold text-white">Trigger the upgrade path</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-300">
-                Once the user trusts the content, ApplyX becomes the obvious power-up for the
-                actual application.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* ── Resource types ───────────────────────────────── */}
       <section className="mt-12">
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="retro-panel p-6">
-            <p className="retro-kicker">Boss fights</p>
-            <h2 className="mt-2 text-3xl font-black uppercase text-white">What you unlock here</h2>
+            <p className="retro-kicker">Resources</p>
+            <h2 className="mt-2 text-3xl font-black uppercase text-white">What you&apos;ll find here</h2>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <Link href="/interview/software-engineer" className="quest-tile">
                 <span className="quest-tile__emoji">🎯</span>
-                <h3 className="quest-tile__title">Interview boss patterns</h3>
+                <h3 className="quest-tile__title">Interview questions</h3>
                 <p className="quest-tile__copy">
-                  Behavioral, technical, and situational questions for {SEO_ROLE_COUNT}+ roles.
+                  Behavioral, technical, and situational questions for {SEO_ROLE_COUNT}+ roles with tips on how to answer.
                 </p>
               </Link>
               <Link href="/salary/software-engineer" className="quest-tile">
                 <span className="quest-tile__emoji">💰</span>
-                <h3 className="quest-tile__title">Salary maps</h3>
+                <h3 className="quest-tile__title">Salary data</h3>
                 <p className="quest-tile__copy">
-                  Comp ranges and negotiation scripts so you stop guessing.
+                  Compensation ranges by experience level and negotiation strategies.
                 </p>
               </Link>
               <Link href="/keywords/software-engineer" className="quest-tile">
                 <span className="quest-tile__emoji">🔑</span>
-                <h3 className="quest-tile__title">ATS keycards</h3>
+                <h3 className="quest-tile__title">ATS keywords</h3>
                 <p className="quest-tile__copy">
-                  Exact keywords that unlock interview visibility in machine filters.
+                  The exact keywords your resume needs to pass automated screening filters.
                 </p>
               </Link>
               <Link href="/resume/software-engineer" className="quest-tile">
                 <span className="quest-tile__emoji">📄</span>
-                <h3 className="quest-tile__title">Resume loadouts</h3>
+                <h3 className="quest-tile__title">Resume guides</h3>
                 <p className="quest-tile__copy">
-                  Real bullet patterns and structure ideas for each role.
+                  Role-specific structure, bullet examples, and formatting best practices.
                 </p>
               </Link>
             </div>
           </div>
 
           <div className="retro-panel p-6">
-            <p className="retro-kicker">Why it works</p>
-            <h2 className="mt-2 text-3xl font-black uppercase text-white">Not polished. Memorable.</h2>
+            <p className="retro-kicker">Why ApplyX</p>
+            <h2 className="mt-2 text-3xl font-black uppercase text-white">Research, then apply smarter</h2>
             <p className="mt-4 text-sm leading-7 text-slate-300">
-              Job seekers scroll past generic “professional” landing pages all day. This version is
-              trying to feel alive, surprising, and worth sharing while still being useful.
+              Most job seekers send the same resume everywhere and wonder why they hear nothing back.
+              ApplyX gives you the research to understand what each role needs, then tailors your
+              resume to match — automatically.
             </p>
             <div className="mt-6 space-y-3 text-sm text-slate-200">
-              <div className="rounded-2xl border border-slate-300/15 bg-white/5 px-4 py-3">
-                Neon UI creates a stronger first impression.
+              <div className="rounded-2xl border border-brand-400/15 bg-brand-950/20 px-4 py-3">
+                Free guides for every step of the job search.
               </div>
-              <div className="rounded-2xl border border-slate-300/15 bg-white/5 px-4 py-3">
-                Story framing makes the content easier to understand.
+              <div className="rounded-2xl border border-brand-400/15 bg-brand-950/20 px-4 py-3">
+                AI resume tailoring that matches your resume to any JD.
               </div>
-              <div className="rounded-2xl border border-slate-300/15 bg-white/5 px-4 py-3">
-                Stronger emotional hook can lead to more clicks into ApplyX.
+              <div className="rounded-2xl border border-brand-400/15 bg-brand-950/20 px-4 py-3">
+                3 free tailors per month — no credit card required.
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* ── Roles ────────────────────────────────────────── */}
       <section id="roles" className="mt-16">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="retro-kicker">Choose your avatar</p>
-            <h2 className="mt-2 text-3xl font-black uppercase text-white">Pick a role</h2>
+            <p className="retro-kicker">Browse by role</p>
+            <h2 className="mt-2 text-3xl font-black uppercase text-white">Pick your role</h2>
           </div>
           <p className="max-w-xl text-sm text-slate-300">
-            Every role page branches into interview prep, salary data, ATS keywords, and resume strategy.
+            Each role page gives you interview questions, salary data, ATS keywords, and a resume guide.
           </p>
         </div>
 
@@ -291,15 +240,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Blog articles ────────────────────────────────── */}
       {articles.length > 0 && (
         <section className="mt-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="retro-kicker">Secret levels</p>
-              <h2 className="mt-2 text-3xl font-black uppercase text-white">Guides worth opening</h2>
+              <p className="retro-kicker">Job search guides</p>
+              <h2 className="mt-2 text-3xl font-black uppercase text-white">In-depth articles</h2>
             </div>
             <Link href={`/blog/${articles[0]?.slug ?? ""}`} className="retro-button retro-button--ghost">
-              Open a guide
+              Read a guide
             </Link>
           </div>
 
@@ -310,7 +260,7 @@ export default function HomePage() {
                 href={`/blog/${article.slug}`}
                 className={`article-card article-card--${(index % 4) + 1}`}
               >
-                <p className="text-xs font-bold uppercase tracking-[0.32em] text-slate-300">
+                <p className="text-xs font-bold uppercase tracking-[0.32em] text-brand-300">
                   {article.category} / {article.readingTime}
                 </p>
                 <span className="mt-4 block text-xl font-bold text-white">{article.title}</span>
@@ -321,19 +271,21 @@ export default function HomePage() {
         </section>
       )}
 
+      {/* ── CTA ──────────────────────────────────────────── */}
       <section className="mt-16">
         <div className="retro-panel p-8 text-center sm:p-12">
-          <p className="retro-kicker">Final upgrade</p>
+          <p className="retro-kicker">Ready to apply?</p>
           <h2 className="mt-3 text-4xl font-black uppercase text-white sm:text-5xl">
-            Done exploring? Equip ApplyX.
+            Let ApplyX tailor your resume
           </h2>
           <p className="mx-auto mt-5 max-w-3xl text-base leading-8 text-slate-200 sm:text-lg">
-            Once you know the role, the salary, the keywords, and the interview traps, ApplyX
-            turns that research into a tailored resume built for the exact job description.
+            ApplyX reads any job description and rewrites your resume to match — maximizing your
+            ATS score for every application. Upload once, tailor for every role. Free tier: 3
+            tailors/month.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link href="/applyx?source=homepage-cta" className="retro-button">
-              Launch ApplyX free
+              Try ApplyX free
             </Link>
             <Link href="/compare/applyx-vs-jobscan" className="retro-button retro-button--ghost">
               Compare with Jobscan
@@ -342,6 +294,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Email capture ────────────────────────────────── */}
       <section className="mt-10">
         <EmailCapture context="homepage" />
       </section>
